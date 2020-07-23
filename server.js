@@ -8,8 +8,9 @@ const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
+const { Client } = require('pg');
 
-const db = knex({
+/* const db = knex({
     client: 'pg',
     connection: {
       connectionString: process.env.DATABASE_URL,
@@ -17,7 +18,16 @@ const db = knex({
         rejectUnauthorized: false
       }
     }
+  }); */
+
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
   });
+  
+  client.connect();
 
 
 const app = express();
