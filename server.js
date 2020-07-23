@@ -18,9 +18,6 @@ const image = require('./controllers/image');
     }
   }); 
 
- 
-  
-  client.connect();
 
 
 const app = express();
